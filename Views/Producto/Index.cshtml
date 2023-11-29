@@ -1,0 +1,41 @@
+﻿@model List<Producto>;
+
+@{
+    ViewData["Title"] = "Inicio Productos";
+    var productos = Model;
+}
+
+
+<h1 class="display-4">LISTA PRODUCTOS</h1>
+
+<button type="button" class="btn btn-dark mb-3" onclick="location.href='@Url.Action("Create", "Producto")'">Crear</button>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var producto in productos)
+        {
+            <tr>
+                <td>@producto.IdProducto</td>
+                <td>@producto.Nombre</td>
+                <td>@producto.Descripcion</td>
+                <td>@producto.Cantidad</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a asp-action="Details" asp-route-IdProducto="@producto.IdProducto" class="btn btn-primary me-2"><i class="bi bi-eye-fill"></i></a>
+                        <a asp-action="Edit" asp-route-IdProducto="@producto.IdProducto" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Delete" asp-route-IdProducto="@producto.IdProducto" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
